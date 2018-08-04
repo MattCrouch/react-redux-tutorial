@@ -1,5 +1,5 @@
 /* Global styles */
-@import url("https://fonts.googleapis.com/css?family=Lato|Oswald");
+@import url("https://fonts.googleapis.com/css?family=Lato|Catamaran:800");
 
 *,
 *:before,
@@ -22,7 +22,8 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Oswald", sans-serif;
+  font-family: "Catamaran", sans-serif;
+  text-shadow: 0 0.1em rgba(0, 0, 0, 0.5);
 }
 
 h1 {
