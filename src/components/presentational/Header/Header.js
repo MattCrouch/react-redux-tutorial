@@ -9,7 +9,7 @@ import Logo from "../../../assets/photo-share.svg";
 const Header = () => (
   <header className="header">
     <Container>
-      <img src={Logo} alt="Photo Share" />
+      <img alt="Photo Share" className="header__image" src={Logo} />
     </Container>
   </header>
 );
