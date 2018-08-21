@@ -1,0 +1,22 @@
+.gallery-photo {
+  flex: 0 100%;
+  margin: 1rem;
+}
+
+.gallery-photo__image {
+  border: 1rem solid white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .gallery-photo {
+    flex: 0 calc(50% - 2rem);
+  }
+}
+
+@media (min-width: 1000px) {
+  .gallery-photo {
+    flex: 0 calc(33% - 2rem);
+  }
+}
