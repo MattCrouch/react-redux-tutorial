@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 
 import Container from "../../presentational/Container";
+import Photo from "../../container/Photo";
 
 import "./styles.css";
 
-class Photo extends Component {
+class PhotoPage extends Component {
   render() {
     return (
       <main className="photo">
         <Container>
-          <h2>Photo</h2>
+          <Photo />
         </Container>
       </main>
     );
   }
 }
 
-export default Photo;
+export default PhotoPage;

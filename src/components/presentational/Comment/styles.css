@@ -1,0 +1,8 @@
+.comment {
+  background: red;
+  border-radius: 50%;
+  height: 2rem;
+  position: absolute;
+  transform: translateX(1rem), translateY(1rem);
+  width: 2rem;
+}
