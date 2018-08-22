@@ -1,8 +1,65 @@
 .comment {
-  background: red;
-  border-radius: 50%;
-  height: 2rem;
   position: absolute;
   transform: translateX(1rem), translateY(1rem);
+}
+
+.comment__marker {
+  align-items: center;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 2rem;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.25s ease-out;
   width: 2rem;
+  will-change: transform;
+}
+
+.comment__marker:hover {
+  transform: scale(1.1);
+}
+
+.comment__icon {
+  width: 50%;
+  margin: 25% 0;
+}
+
+.comment__box {
+  background: white;
+  color: black;
+  padding: 1rem;
+  position: absolute;
+  width: 300px;
+}
+
+.comment__marker,
+.comment__box {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.03);
+}
+
+.comment__box--top-left {
+  bottom: 100%;
+  right: 100%;
+}
+
+.comment__box--top-right {
+  bottom: 100%;
+  left: 100%;
+}
+
+.comment__box--bottom-left {
+  top: 100%;
+  right: 100%;
+}
+
+.comment__box--bottom-right {
+  top: 100%;
+  left: 100%;
+}
+
+.comment__user {
+  color: darkgray;
+  font-size: 0.8em;
+  text-align: right;
 }

@@ -7,8 +7,15 @@ import Comment from "../../presentational/Comment";
 const Photo = ({ id, comments, src }) => (
   <div className="photo" to={`/photo/${id}`}>
     <img alt={id} className="photo__image" src={src} />
-    {comments.map(({ comment, id, left, top }) => (
-      <Comment comment={comment} id={id} key={id} left={left} top={top} />
+    {comments.map(({ comment, id, left, top, user }) => (
+      <Comment
+        comment={comment}
+        id={id}
+        key={id}
+        left={left}
+        top={top}
+        user={user}
+      />
     ))}
   </div>
 );
