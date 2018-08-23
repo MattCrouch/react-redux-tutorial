@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./styles.css";
 
 import CommentIcon from "../../../assets/comment.svg";
+import CloseIcon from "../../../assets/close.svg";
 
 const Comment = ({ id, comment, left, top, user }) => {
   let direction = "bottom-right";
@@ -27,6 +28,9 @@ const Comment = ({ id, comment, left, top, user }) => {
         <img alt="Comment" className="comment__icon" src={CommentIcon} />
       </div>
       <div className={`comment__box comment__box--${direction}`}>
+        <button className="comment__close">
+          <img alt="Close" src={CloseIcon} />
+        </button>
         <div>{comment}</div>
         <div className="comment__user">{user.name}</div>
       </div>

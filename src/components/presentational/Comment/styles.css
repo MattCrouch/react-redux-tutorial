@@ -28,9 +28,14 @@
 .comment__box {
   background: white;
   color: black;
+  left: 0;
+  margin: 5%;
+  max-height: 100vh;
   padding: 1rem;
-  position: absolute;
-  width: 300px;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 90%;
 }
 
 .comment__marker,
@@ -38,24 +43,53 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.03);
 }
 
-.comment__box--top-left {
-  bottom: 100%;
-  right: 100%;
+.comment__close {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  height: 1.25rem;
+  margin: 0.25rem;
+  padding: 0.25rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1.25rem;
 }
 
-.comment__box--top-right {
-  bottom: 100%;
-  left: 100%;
+.comment__close img {
+  width: 100%;
 }
 
-.comment__box--bottom-left {
-  top: 100%;
-  right: 100%;
-}
+@media (min-width: 600px) {
+  .comment__box {
+    position: absolute;
+    width: 300px;
+    margin: 0;
+    top: auto;
+    left: auto;
+    transform: none;
+  }
 
-.comment__box--bottom-right {
-  top: 100%;
-  left: 100%;
+  .comment__box--top-left {
+    bottom: 100%;
+    right: 100%;
+  }
+
+  .comment__box--top-right {
+    bottom: 100%;
+    left: 100%;
+  }
+
+  .comment__box--bottom-left {
+    top: 100%;
+    right: 100%;
+  }
+
+  .comment__box--bottom-right {
+    top: 100%;
+    left: 100%;
+  }
 }
 
 .comment__user {

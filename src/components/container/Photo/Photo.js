@@ -9,8 +9,8 @@ const photo = {
     {
       id: "1",
       comment: "This is great",
-      top: 12,
-      left: 34,
+      top: 50,
+      left: 50,
       user: { id: "1", name: "Barry" }
     },
     {
