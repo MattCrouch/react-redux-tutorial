@@ -5,7 +5,16 @@ import "./styles.css";
 import CommentIcon from "../../../assets/comment.svg";
 import CloseIcon from "../../../assets/close.svg";
 
-const Comment = ({ id, comment, left, top, user }) => {
+const Comment = ({
+  id,
+  isCommentOpen,
+  comment,
+  hideComment,
+  left,
+  showComment,
+  top,
+  user
+}) => {
   let direction = "bottom-right";
 
   if (top < 50) {
@@ -24,11 +33,15 @@ const Comment = ({ id, comment, left, top, user }) => {
 
   return (
     <div className="comment" style={{ left: `${left}%`, top: `${top}%` }}>
-      <div className="comment__marker">
+      <div className="comment__marker" onClick={showComment}>
         <img alt="Comment" className="comment__icon" src={CommentIcon} />
       </div>
-      <div className={`comment__box comment__box--${direction}`}>
-        <button className="comment__close">
+      <div
+        className={`comment__box comment__box--${direction} ${
+          isCommentOpen ? "comment__box--open" : ""
+        }`}
+      >
+        <button className="comment__close" onClick={hideComment}>
           <img alt="Close" src={CloseIcon} />
         </button>
         <div>{comment}</div>
@@ -41,12 +54,15 @@ const Comment = ({ id, comment, left, top, user }) => {
 Comment.propTypes = {
   comment: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  isCommentOpen: PropTypes.bool.isRequired,
   left: PropTypes.number.isRequired,
   top: PropTypes.number.isRequired,
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
-  })
+  }),
+  hideComment: PropTypes.func.isRequired,
+  showComment: PropTypes.func.isRequired
 };
 
 Comment.defaultProps = {};

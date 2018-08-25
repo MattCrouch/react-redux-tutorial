@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./styles.css";
 
-import Comment from "../../presentational/Comment";
+import Comment from "../../container/Comment";
 
 const Photo = ({ id, comments, src }) => (
   <div className="photo" to={`/photo/${id}`}>

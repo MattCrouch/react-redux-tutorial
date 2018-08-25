@@ -62,7 +62,7 @@
   width: 100%;
 }
 
-.comment__box--visible {
+.comment__box--open {
   display: block;
 }
 
