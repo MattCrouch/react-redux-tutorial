@@ -28,6 +28,7 @@
 .comment__box {
   background: white;
   color: black;
+  display: none;
   left: 0;
   margin: 5%;
   max-height: 100vh;
@@ -59,6 +60,10 @@
 
 .comment__close img {
   width: 100%;
+}
+
+.comment__box--visible {
+  display: block;
 }
 
 @media (min-width: 600px) {
