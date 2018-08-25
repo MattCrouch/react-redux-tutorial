@@ -10,7 +10,7 @@ class PhotoPage extends Component {
     return (
       <main className="photo">
         <Container>
-          <Photo />
+          <Photo id={this.props.match.params.id} />
         </Container>
       </main>
     );
