@@ -11,7 +11,6 @@ export class PhotoContainer extends Component {
       return null;
     }
 
-    console.log(this.props);
     return (
       <Photo
         id={this.props.photo.id}
