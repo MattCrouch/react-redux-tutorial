@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { getGalleryPhotos } from "../../../selectors";
 
 import Gallery from "../../presentational/Gallery";
 
@@ -11,7 +12,7 @@ export class GalleryContainer extends Component {
 }
 
 export const mapStateToProps = state => ({
-  photos: Object.values(state.photos)
+  photos: getGalleryPhotos(state)
 });
 
 GalleryContainer.propTypes = {
