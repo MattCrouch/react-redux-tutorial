@@ -1,4 +1,5 @@
 .comment {
+  line-height: 1.5;
   position: absolute;
   transform: translateX(-1rem) translateY(-1rem);
 }
