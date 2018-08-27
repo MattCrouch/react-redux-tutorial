@@ -1,0 +1,19 @@
+.loading {
+  margin: 10rem;
+  text-align: center;
+}
+
+.loading__spinner {
+  animation: loading 1s infinite linear;
+  height: 2rem;
+  width: 2rem;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
