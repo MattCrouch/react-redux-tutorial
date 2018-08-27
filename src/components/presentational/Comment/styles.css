@@ -1,6 +1,6 @@
 .comment {
   position: absolute;
-  transform: translateX(1rem), translateY(1rem);
+  transform: translateX(-1rem) translateY(-1rem);
 }
 
 .comment__marker {
