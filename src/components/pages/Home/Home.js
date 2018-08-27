@@ -8,7 +8,7 @@ import "./styles.css";
 class Home extends Component {
   render() {
     return (
-      <main className="home">
+      <main className="home-page">
         <Container>
           <Gallery />
         </Container>

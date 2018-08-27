@@ -8,7 +8,7 @@ import "./styles.css";
 class PhotoPage extends Component {
   render() {
     return (
-      <main className="photo">
+      <main className="photo-page">
         <Container>
           <Photo id={this.props.match.params.id} />
         </Container>
