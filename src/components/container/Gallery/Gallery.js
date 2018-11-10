@@ -5,6 +5,7 @@ import { loadGallery } from "../../../actions";
 import {
   getGalleryPhotos,
   isGalleryErrored,
+  isGalleryLoaded,
   isGalleryLoading
 } from "../../../selectors";
 
@@ -12,8 +13,11 @@ import Gallery from "../../presentational/Gallery";
 
 export class GalleryContainer extends Component {
   componentDidMount() {
-    this.props.loadGallery();
+    if (!this.props.photosLoaded) {
+      this.props.loadGallery();
+    }
   }
+
   render() {
     return (
       <Gallery
@@ -28,7 +32,8 @@ export class GalleryContainer extends Component {
 export const mapStateToProps = state => ({
   error: isGalleryErrored(state),
   loading: isGalleryLoading(state),
-  photos: getGalleryPhotos(state)
+  photos: getGalleryPhotos(state),
+  photosLoaded: isGalleryLoaded(state)
 });
 
 export const mapDispatchToProps = dispatch => ({
@@ -43,7 +48,8 @@ GalleryContainer.propTypes = {
       id: PropTypes.string.isRequired,
       src: PropTypes.string.isRequired
     })
-  )
+  ),
+  photosLoaded: PropTypes.bool.isRequired
 };
 
 export default connect(
