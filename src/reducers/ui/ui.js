@@ -1,7 +1,15 @@
-import { HIDE_COMMENT, SHOW_COMMENT } from "../../constants/actions";
+import {
+  HIDE_COMMENT,
+  LOAD_GALLERY_ERROR,
+  LOAD_GALLERY_START,
+  LOAD_GALLERY_SUCCESS,
+  SHOW_COMMENT
+} from "../../constants/actions";
 
 const initialState = {
-  commentOpen: undefined
+  commentOpen: undefined,
+  error: undefined,
+  loading: false
 };
 
 export const reducer = (state = initialState, action) => {
@@ -10,6 +18,23 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         commentOpen: undefined
+      };
+    case LOAD_GALLERY_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      };
+    case LOAD_GALLERY_START:
+      return {
+        ...state,
+        loading: true,
+        error: undefined
+      };
+    case LOAD_GALLERY_SUCCESS:
+      return {
+        ...state,
+        loading: false
       };
     case SHOW_COMMENT:
       return {
