@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loadGallery } from "../../../actions";
-import { getGalleryPhotos, isGalleryLoading } from "../../../selectors";
+import {
+  getGalleryPhotos,
+  isGalleryErrored,
+  isGalleryLoading
+} from "../../../selectors";
 
 import Gallery from "../../presentational/Gallery";
 
@@ -11,13 +15,20 @@ export class GalleryContainer extends Component {
     this.props.loadGallery();
   }
   render() {
-    return <Gallery loading={this.props.loading} photos={this.props.photos} />;
+    return (
+      <Gallery
+        error={this.props.error}
+        loading={this.props.loading}
+        photos={this.props.photos}
+      />
+    );
   }
 }
 
 export const mapStateToProps = state => ({
-  photos: getGalleryPhotos(state),
-  loading: isGalleryLoading(state)
+  error: isGalleryErrored(state),
+  loading: isGalleryLoading(state),
+  photos: getGalleryPhotos(state)
 });
 
 export const mapDispatchToProps = dispatch => ({

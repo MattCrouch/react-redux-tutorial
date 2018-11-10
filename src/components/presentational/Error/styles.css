@@ -1,0 +1,37 @@
+.error {
+  margin: 10rem auto;
+  text-align: center;
+}
+
+.error__message {
+  font-weight: bold;
+}
+
+.error__retry-button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 1rem auto 0;
+  transition: transform 0.25s ease-out;
+  text-align: center;
+}
+
+.error__retry-button:hover,
+.error__retry-button:focus {
+  transform: scale(1.1);
+}
+
+.error__retry-icon {
+  margin: 0 auto;
+  height: 2rem;
+}
+
+.error__retry-label {
+  display: block;
+}

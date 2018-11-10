@@ -2,10 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./styles.css";
 
+import Error from "../../container/Error";
 import Loading from "../Loading";
 import GalleryPhoto from "../GalleryPhoto";
 
-const Gallery = ({ loading, photos }) => {
+const Gallery = ({ error, loading, photos }) => {
+  if (error) {
+    return <Error />;
+  }
+
   if (loading) {
     return <Loading />;
   }

@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   commentOpen: undefined,
-  error: undefined,
+  error: false,
   loading: false
 };
 
@@ -23,13 +23,13 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.payload
+        error: true
       };
     case LOAD_GALLERY_START:
       return {
         ...state,
         loading: true,
-        error: undefined
+        error: false
       };
     case LOAD_GALLERY_SUCCESS:
       return {

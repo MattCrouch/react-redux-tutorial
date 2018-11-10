@@ -24,8 +24,6 @@ export const loadGallery = () => dispatch => {
 
   return axios
     .get("http://localhost:3001/photos")
-    .then(response => {
-      dispatch(loadGallerySuccess(response.data));
-    })
+    .then(response => dispatch(loadGallerySuccess(response.data)))
     .catch(() => dispatch(loadGalleryError()));
 };
