@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import "./styles.css";
 
 import Comment from "../../container/Comment";
+import NewComment from "../../container/NewComment";
 
-const Photo = ({ id, comments, src }) => (
-  <div className="photo" to={`/photo/${id}`}>
+const Photo = ({ addNewComment, comments, id, newComment, src }) => (
+  <div className="photo" onClick={addNewComment}>
     <img alt={id} className="photo__image" src={src} />
     {comments.map(({ comment, id, left, top, user }) => (
       <Comment
@@ -17,10 +18,12 @@ const Photo = ({ id, comments, src }) => (
         user={user}
       />
     ))}
+    {newComment && <NewComment top={newComment.top} left={newComment.left} />}
   </div>
 );
 
 Photo.propTypes = {
+  addNewComment: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   comments: PropTypes.arrayOf(
     PropTypes.shape({
@@ -34,6 +37,10 @@ Photo.propTypes = {
       })
     })
   ).isRequired,
+  newComment: PropTypes.shape({
+    top: PropTypes.number.isRequired,
+    left: PropTypes.number.isRequired
+  }),
   src: PropTypes.string.isRequired
 };
 

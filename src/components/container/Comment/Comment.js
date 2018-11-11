@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -6,7 +6,40 @@ import { hideComment, showComment } from "../../../actions";
 import { isCommentOpen } from "../../../selectors";
 import Comment from "../../presentational/Comment";
 
-export const CommentContainer = props => <Comment {...props} />;
+export class CommentContainer extends Component {
+  constructor() {
+    super();
+
+    this.hideComment = this.hideComment.bind(this);
+    this.showComment = this.showComment.bind(this);
+  }
+
+  hideComment(e) {
+    e.stopPropagation();
+    this.props.hideComment();
+  }
+
+  showComment(e) {
+    e.stopPropagation();
+    this.props.showComment();
+  }
+
+  render() {
+    const { comment, id, isCommentOpen, left, top, user } = this.props;
+    return (
+      <Comment
+        comment={comment}
+        id={id}
+        hideComment={this.hideComment}
+        isCommentOpen={isCommentOpen}
+        left={left}
+        top={top}
+        user={user}
+        showComment={this.showComment}
+      />
+    );
+  }
+}
 
 export const mapStateToProps = (state, props) => ({
   isCommentOpen: isCommentOpen(state, props.id)
@@ -19,16 +52,16 @@ export const mapDispatchToProps = (dispatch, props) => ({
 
 CommentContainer.propTypes = {
   comment: PropTypes.string.isRequired,
+  hideComment: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   isCommentOpen: PropTypes.bool.isRequired,
   left: PropTypes.number.isRequired,
+  showComment: PropTypes.func.isRequired,
   top: PropTypes.number.isRequired,
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
-  }),
-  hideComment: PropTypes.func.isRequired,
-  showComment: PropTypes.func.isRequired
+  })
 };
 
 export default connect(

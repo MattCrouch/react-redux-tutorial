@@ -1,4 +1,5 @@
 import {
+  ADD_NEW_COMMENT,
   HIDE_COMMENT,
   LOAD_GALLERY_ERROR,
   LOAD_GALLERY_START,
@@ -9,11 +10,19 @@ import {
 const initialState = {
   commentOpen: undefined,
   error: false,
-  loading: false
+  loading: false,
+  newComment: undefined,
+  userId: 1
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_NEW_COMMENT:
+      return {
+        ...state,
+        commentOpen: undefined,
+        newComment: action.payload
+      };
     case HIDE_COMMENT:
       return {
         ...state,

@@ -1,0 +1,48 @@
+.new-comment {
+  line-height: 1.5;
+  position: absolute;
+  transform: translateX(-1rem) translateY(-1rem);
+}
+
+.new-comment__form {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+}
+
+.new-comment__label {
+  flex: 1;
+  font-weight: bold;
+}
+
+.new-comment__input {
+  border: 2px solid #bed8fc;
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0.5rem 0;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+.new-comment__input:focus {
+  outline: none;
+  border-color: #2f3640;
+}
+
+.new-comment__submit {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: inherit;
+  font-size: inherit;
+  height: 2rem;
+  padding: 0.25rem;
+  margin: 0.5rem 0;
+  text-align: center;
+}
