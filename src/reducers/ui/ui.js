@@ -13,7 +13,6 @@ const initialState = {
   currentPhotoId: undefined,
   error: false,
   loading: false,
-  newComment: undefined,
   userId: "1"
 };
 
@@ -22,8 +21,7 @@ export const reducer = (state = initialState, action) => {
     case ADD_NEW_COMMENT:
       return {
         ...state,
-        commentOpen: undefined,
-        newComment: action.payload
+        commentOpen: undefined
       };
     case HIDE_COMMENT:
       return {
