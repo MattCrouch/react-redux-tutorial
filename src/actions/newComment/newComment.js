@@ -20,9 +20,7 @@ export const submitComment = comment => (dispatch, getState) => {
 
   const { userId, currentPhotoId } = getState().ui;
 
-  const {
-    newComment: { left, top }
-  } = getState().newComment;
+  const { left, top } = getState().newComment;
 
   return axios
     .post("http://localhost:3001/comments", {
@@ -32,8 +30,8 @@ export const submitComment = comment => (dispatch, getState) => {
       left,
       top
     })
-    .then(({ id, comment, top, left }) =>
-      dispatch(submitCommentSuccess(id, comment, top, left))
+    .then(({ id, comment, left, top }) =>
+      dispatch(submitCommentSuccess(id, comment, left, top))
     )
     .catch(() => dispatch(submitCommentError()));
 };
@@ -42,7 +40,7 @@ export const submitCommentStart = () => ({
   type: SUBMIT_COMMENT_START
 });
 
-export const submitCommentSuccess = (userId, comment, top, left) => ({
+export const submitCommentSuccess = (userId, comment, left, top) => ({
   type: SUBMIT_COMMENT_SUCCESS,
   payload: {
     userId,

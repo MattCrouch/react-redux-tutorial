@@ -1,7 +1,8 @@
 import { ADD_NEW_COMMENT } from "../../constants/actions";
 
 const initialState = {
-  newComment: undefined
+  left: undefined,
+  top: undefined
 };
 
 export const reducer = (state = initialState, action) => {
@@ -9,7 +10,8 @@ export const reducer = (state = initialState, action) => {
     case ADD_NEW_COMMENT:
       return {
         ...state,
-        newComment: action.payload
+        left: action.payload.left,
+        top: action.payload.top
       };
 
     default:
