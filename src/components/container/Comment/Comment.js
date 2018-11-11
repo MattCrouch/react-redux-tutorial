@@ -7,35 +7,28 @@ import { isCommentOpen } from "../../../selectors";
 import Comment from "../../presentational/Comment";
 
 export class CommentContainer extends Component {
-  constructor() {
-    super();
-
-    this.hideComment = this.hideComment.bind(this);
-    this.showComment = this.showComment.bind(this);
-  }
-
-  hideComment(e) {
-    e.stopPropagation();
-    this.props.hideComment();
-  }
-
-  showComment(e) {
-    e.stopPropagation();
-    this.props.showComment();
-  }
-
   render() {
-    const { comment, id, isCommentOpen, left, top, user } = this.props;
+    const {
+      comment,
+      hideComment,
+      id,
+      isCommentOpen,
+      left,
+      showComment,
+      top,
+      user
+    } = this.props;
+
     return (
       <Comment
         comment={comment}
         id={id}
-        hideComment={this.hideComment}
+        hideComment={hideComment}
         isCommentOpen={isCommentOpen}
         left={left}
         top={top}
         user={user}
-        showComment={this.showComment}
+        showComment={showComment}
       />
     );
   }

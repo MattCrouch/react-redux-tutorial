@@ -6,8 +6,8 @@ import Comment from "../../container/Comment";
 import NewComment from "../../container/NewComment";
 
 const Photo = ({ addNewComment, comments, id, newComment, src }) => (
-  <div className="photo" onClick={addNewComment}>
-    <img alt={id} className="photo__image" src={src} />
+  <div className="photo">
+    <img alt={id} className="photo__image" onClick={addNewComment} src={src} />
     {comments.map(({ comment, id, left, top, user }) => (
       <Comment
         comment={comment}
