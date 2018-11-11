@@ -12,8 +12,7 @@ const initialState = {
   commentOpen: undefined,
   currentPhotoId: undefined,
   error: false,
-  loading: false,
-  userId: "1"
+  loading: false
 };
 
 export const reducer = (state = initialState, action) => {
