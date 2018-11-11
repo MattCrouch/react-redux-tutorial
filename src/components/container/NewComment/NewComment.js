@@ -3,28 +3,41 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { submitComment } from "../../../actions";
+import {
+  isNewCommentErrored,
+  isNewCommentSubmitting
+} from "../../../selectors";
 import NewComment from "../../presentational/NewComment";
 
 export class NewCommentContainer extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
-    const { left, top, submitComment } = this.props;
-    return <NewComment left={left} top={top} submitComment={submitComment} />;
+    const { error, left, top, submitComment, submitting } = this.props;
+    return (
+      <NewComment
+        error={error}
+        left={left}
+        top={top}
+        submitComment={submitComment}
+        submitting={submitting}
+      />
+    );
   }
 }
 
-export const mapStateToProps = (state, props) => ({});
+export const mapStateToProps = state => ({
+  error: isNewCommentErrored(state),
+  submitting: isNewCommentSubmitting(state)
+});
 
-export const mapDispatchToProps = (dispatch, props) => ({
+export const mapDispatchToProps = dispatch => ({
   submitComment: comment => dispatch(submitComment(comment))
 });
 
 NewCommentContainer.propTypes = {
+  error: PropTypes.bool.isRequired,
   left: PropTypes.number.isRequired,
-  top: PropTypes.number.isRequired
+  top: PropTypes.number.isRequired,
+  submitting: PropTypes.bool.isRequired
 };
 
 export default connect(

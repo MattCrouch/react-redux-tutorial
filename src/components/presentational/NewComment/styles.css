@@ -4,6 +4,11 @@
   transform: translateX(-1rem) translateY(-1rem);
 }
 
+.new-comment__error {
+  color: red;
+  text-align: center;
+}
+
 .new-comment__form {
   align-items: flex-end;
   display: flex;

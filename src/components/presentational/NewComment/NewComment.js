@@ -27,7 +27,7 @@ export class NewComment extends Component {
   }
 
   render() {
-    const { left, top } = this.props;
+    const { error, left, top, submitting } = this.props;
 
     return (
       <div className="new-comment" style={{ left: `${left}%`, top: `${top}%` }}>
@@ -39,6 +39,7 @@ export class NewComment extends Component {
               <input
                 autoFocus
                 className="new-comment__input"
+                disabled={submitting}
                 onChange={this.onCommentChange}
                 required
                 type="text"
@@ -46,10 +47,16 @@ export class NewComment extends Component {
             </label>
             <input
               className="new-comment__submit"
+              disabled={submitting}
               type="submit"
               value="Submit"
             />
           </form>
+          {error && (
+            <div className="new-comment__error">
+              There was an error, please try again
+            </div>
+          )}
         </CommentBox>
       </div>
     );
@@ -57,9 +64,11 @@ export class NewComment extends Component {
 }
 
 NewComment.propTypes = {
+  error: PropTypes.bool.isRequired,
   left: PropTypes.number.isRequired,
   submitComment: PropTypes.func.isRequired,
-  top: PropTypes.number.isRequired
+  top: PropTypes.number.isRequired,
+  submitting: PropTypes.bool.isRequired
 };
 
 export default NewComment;

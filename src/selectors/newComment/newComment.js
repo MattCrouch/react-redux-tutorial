@@ -14,4 +14,4 @@ export const getNewComment = state => {
 
 export const isNewCommentErrored = state => state.newComment.error;
 
-export const isNewCommentLoading = state => state.newComment.loading;
+export const isNewCommentSubmitting = state => state.newComment.submitting;
