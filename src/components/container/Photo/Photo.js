@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { addNewComment, loadGallery } from "../../../actions";
+import {
+  addNewComment,
+  loadGallery,
+  setCurrentPhotoId
+} from "../../../actions";
 import { getNewComment, getPhoto, isGalleryLoaded } from "../../../selectors";
 import Photo from "../../presentational/Photo";
 
@@ -13,6 +17,8 @@ export class PhotoContainer extends Component {
   }
 
   componentDidMount() {
+    this.props.setCurrentPhotoId(this.props.id);
+
     if (!this.props.photosLoaded) {
       this.props.loadGallery();
     }
@@ -55,11 +61,13 @@ export const mapStateToProps = (state, props) => ({
 
 export const mapDispatchToProps = dispatch => ({
   addNewComment: (top, left) => dispatch(addNewComment(top, left)),
-  loadGallery: () => dispatch(loadGallery())
+  loadGallery: () => dispatch(loadGallery()),
+  setCurrentPhotoId: id => dispatch(setCurrentPhotoId(id))
 });
 
 PhotoContainer.propTypes = {
   addNewComment: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
   loadGallery: PropTypes.func.isRequired,
   newComment: PropTypes.shape({
     top: PropTypes.number.isRequired,
@@ -69,7 +77,8 @@ PhotoContainer.propTypes = {
     id: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired
   }),
-  photosLoaded: PropTypes.bool.isRequired
+  photosLoaded: PropTypes.bool.isRequired,
+  setCurrentPhotoId: PropTypes.func.isRequired
 };
 
 export default connect(

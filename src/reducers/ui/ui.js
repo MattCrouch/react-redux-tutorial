@@ -4,15 +4,17 @@ import {
   LOAD_GALLERY_ERROR,
   LOAD_GALLERY_START,
   LOAD_GALLERY_SUCCESS,
+  SET_CURRENT_PHOTO_ID,
   SHOW_COMMENT
 } from "../../constants/actions";
 
 const initialState = {
   commentOpen: undefined,
+  currentPhotoId: undefined,
   error: false,
   loading: false,
   newComment: undefined,
-  userId: 1
+  userId: "1"
 };
 
 export const reducer = (state = initialState, action) => {
@@ -44,6 +46,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false
+      };
+    case SET_CURRENT_PHOTO_ID:
+      return {
+        ...state,
+        currentPhotoId: action.payload
       };
     case SHOW_COMMENT:
       return {

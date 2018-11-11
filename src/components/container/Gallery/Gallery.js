@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loadGallery } from "../../../actions";
+import { loadGallery, setCurrentPhotoId } from "../../../actions";
 import {
   getGalleryPhotos,
   isGalleryErrored,
@@ -13,6 +13,8 @@ import Gallery from "../../presentational/Gallery";
 
 export class GalleryContainer extends Component {
   componentDidMount() {
+    this.props.clearCurrentPhotoId();
+
     if (!this.props.photosLoaded) {
       this.props.loadGallery();
     }
@@ -37,10 +39,12 @@ export const mapStateToProps = state => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  loadGallery: () => dispatch(loadGallery())
+  loadGallery: () => dispatch(loadGallery()),
+  clearCurrentPhotoId: () => dispatch(setCurrentPhotoId(undefined))
 });
 
 GalleryContainer.propTypes = {
+  clearCurrentPhotoId: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   loadGallery: PropTypes.func.isRequired,
   photos: PropTypes.arrayOf(

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-// import { hideComment, showComment } from "../../../actions";
+import { submitComment } from "../../../actions";
 import NewComment from "../../presentational/NewComment";
 
 export class NewCommentContainer extends Component {
@@ -11,13 +11,16 @@ export class NewCommentContainer extends Component {
   }
 
   render() {
-    return <NewComment left={this.props.left} top={this.props.top} />;
+    const { left, top, submitComment } = this.props;
+    return <NewComment left={left} top={top} submitComment={submitComment} />;
   }
 }
 
 export const mapStateToProps = (state, props) => ({});
 
-export const mapDispatchToProps = (dispatch, props) => ({});
+export const mapDispatchToProps = (dispatch, props) => ({
+  submitComment: comment => dispatch(submitComment(comment))
+});
 
 NewCommentContainer.propTypes = {
   left: PropTypes.number.isRequired,
