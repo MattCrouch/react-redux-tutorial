@@ -1,5 +1,6 @@
 import {
   ADD_NEW_COMMENT,
+  SET_CURRENT_PHOTO_ID,
   SHOW_COMMENT,
   SUBMIT_COMMENT_ERROR,
   SUBMIT_COMMENT_START,
@@ -21,6 +22,7 @@ export const reducer = (state = initialState, action) => {
         left: action.payload.left,
         top: action.payload.top
       };
+    case SET_CURRENT_PHOTO_ID:
     case SHOW_COMMENT:
       return {
         ...state,
