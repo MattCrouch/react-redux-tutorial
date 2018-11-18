@@ -44,6 +44,4 @@ Photo.propTypes = {
   src: PropTypes.string.isRequired
 };
 
-Photo.defaultProps = {};
-
 export default Photo;

@@ -10,8 +10,8 @@ import {
 } from "../../../selectors";
 
 import Error from "../../container/Error";
-import Loading from "../../presentational/Loading";
 import Gallery from "../../presentational/Gallery";
+import Loading from "../../presentational/Loading";
 
 export class GalleryContainer extends Component {
   componentDidMount() {

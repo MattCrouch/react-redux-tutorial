@@ -7,7 +7,16 @@ import {
   loadGallery,
   setCurrentPhotoId
 } from "../../../actions";
-import { getNewComment, getPhoto, isGalleryLoaded } from "../../../selectors";
+import {
+  getNewComment,
+  getPhoto,
+  isGalleryErrored,
+  isGalleryLoaded,
+  isGalleryLoading
+} from "../../../selectors";
+
+import Error from "../../container/Error";
+import Loading from "../../presentational/Loading";
 import Photo from "../../presentational/Photo";
 
 export class PhotoContainer extends Component {
@@ -37,23 +46,35 @@ export class PhotoContainer extends Component {
   }
 
   render() {
-    if (!this.props.photo) {
+    const { error, loading, newComment, photo } = this.props;
+
+    if (error) {
+      return <Error />;
+    }
+
+    if (loading) {
+      return <Loading />;
+    }
+
+    if (!photo) {
       return null;
     }
 
     return (
       <Photo
         addNewComment={this.addNewComment}
-        comments={this.props.photo.comments}
-        id={this.props.photo.id}
-        src={this.props.photo.src}
-        newComment={this.props.newComment}
+        comments={photo.comments}
+        id={photo.id}
+        src={photo.src}
+        newComment={newComment}
       />
     );
   }
 }
 
 export const mapStateToProps = (state, props) => ({
+  error: isGalleryErrored(state),
+  loading: isGalleryLoading(state),
   newComment: getNewComment(state),
   photo: getPhoto(state, props.id),
   photosLoaded: isGalleryLoaded(state)
@@ -67,8 +88,10 @@ export const mapDispatchToProps = dispatch => ({
 
 PhotoContainer.propTypes = {
   addNewComment: PropTypes.func.isRequired,
+  error: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   loadGallery: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
   newComment: PropTypes.shape({
     top: PropTypes.number.isRequired,
     left: PropTypes.number.isRequired
