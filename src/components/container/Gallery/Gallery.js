@@ -9,6 +9,8 @@ import {
   isGalleryLoading
 } from "../../../selectors";
 
+import Error from "../../container/Error";
+import Loading from "../../presentational/Loading";
 import Gallery from "../../presentational/Gallery";
 
 export class GalleryContainer extends Component {
@@ -21,13 +23,17 @@ export class GalleryContainer extends Component {
   }
 
   render() {
-    return (
-      <Gallery
-        error={this.props.error}
-        loading={this.props.loading}
-        photos={this.props.photos}
-      />
-    );
+    const { error, loading, photos } = this.props;
+
+    if (error) {
+      return <Error />;
+    }
+
+    if (loading) {
+      return <Loading />;
+    }
+
+    return <Gallery photos={photos} />;
   }
 }
 
@@ -45,8 +51,9 @@ export const mapDispatchToProps = dispatch => ({
 
 GalleryContainer.propTypes = {
   clearCurrentPhotoId: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
   loadGallery: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
   photos: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
