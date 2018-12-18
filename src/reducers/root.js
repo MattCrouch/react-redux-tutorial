@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers } from "redux-immutable";
 
 import newComment from "./newComment";
 import photos from "./photos";
