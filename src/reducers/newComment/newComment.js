@@ -1,3 +1,4 @@
+import { Record } from "immutable";
 import {
   ADD_NEW_COMMENT,
   SET_CURRENT_PHOTO_ID,
@@ -7,12 +8,14 @@ import {
   SUBMIT_COMMENT_SUCCESS
 } from "../../constants/actions";
 
-const initialState = {
+export const NewCommentStateRecord = Record({
   error: false,
   left: undefined,
   top: undefined,
   submitting: false
-};
+});
+
+export const initialState = NewCommentStateRecord();
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {

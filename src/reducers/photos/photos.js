@@ -1,9 +1,10 @@
+import { List } from "immutable";
 import {
   LOAD_GALLERY_SUCCESS,
   SUBMIT_COMMENT_SUCCESS
 } from "../../constants/actions";
 
-const initialState = [];
+export const initialState = List([]);
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {

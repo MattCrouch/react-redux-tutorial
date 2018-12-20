@@ -1,3 +1,4 @@
+import { Record } from "immutable";
 import {
   ADD_NEW_COMMENT,
   HIDE_COMMENT,
@@ -8,12 +9,14 @@ import {
   SHOW_COMMENT
 } from "../../constants/actions";
 
-const initialState = {
+export const UiStateRecord = Record({
   commentOpen: undefined,
   currentPhotoId: undefined,
   error: false,
   loading: false
-};
+});
+
+export const initialState = UiStateRecord();
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
