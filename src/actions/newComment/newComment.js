@@ -38,10 +38,7 @@ export const submitComment = comment => (dispatch, getState) => {
         submitCommentSuccess(id, comment, left, top, user, currentPhotoId)
       )
     )
-    .catch(e => {
-      console.log(e);
-      dispatch(submitCommentError());
-    });
+    .catch(e => dispatch(submitCommentError()));
 };
 
 export const submitCommentStart = () => ({

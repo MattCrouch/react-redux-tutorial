@@ -37,9 +37,8 @@ export const reducer = (state = initialState, action) => {
         return state;
       }
 
-      newState = state.updateIn([key, "comments"], comments => {
-        console.log(comments);
-        return comments.push(
+      newState = state.updateIn([key, "comments"], comments =>
+        comments.push(
           CommentRecord({
             id,
             comment,
@@ -47,8 +46,8 @@ export const reducer = (state = initialState, action) => {
             top,
             user
           })
-        );
-      });
+        )
+      );
 
       return newState;
     default:
