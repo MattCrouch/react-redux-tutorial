@@ -3,31 +3,51 @@ import {
   LOAD_GALLERY_SUCCESS,
   SUBMIT_COMMENT_SUCCESS
 } from "../../constants/actions";
+import { CommentRecord, PhotoRecord, UserRecord } from "../../records";
 
 export const initialState = List([]);
 
 export const reducer = (state = initialState, action) => {
+  let newState;
+
   switch (action.type) {
     case LOAD_GALLERY_SUCCESS:
-      return action.photos;
+      const photos = action.photos.map(photo => {
+        const comments = List(
+          photo.comments.map(comment => CommentRecord(comment))
+        );
+        const user = UserRecord(photo.user);
+
+        return PhotoRecord({
+          ...photo,
+          comments,
+          user
+        });
+      });
+
+      newState = List(photos);
+
+      return newState;
     case SUBMIT_COMMENT_SUCCESS:
       const { id, comment, top, left, user, photoId } = action.payload;
 
-      // Deep clone state
-      const newState = JSON.parse(JSON.stringify(state));
+      const key = state.findIndex(photo => photo.id === photoId);
 
-      const photo = newState.find(photo => photo.id === photoId);
-
-      if (!photo) {
+      if (key === -1) {
         return state;
       }
 
-      photo.comments.push({
-        id,
-        comment,
-        left,
-        top,
-        user
+      newState = state.updateIn([key, "comments"], comments => {
+        console.log(comments);
+        return comments.push(
+          CommentRecord({
+            id,
+            comment,
+            left,
+            top,
+            user
+          })
+        );
       });
 
       return newState;

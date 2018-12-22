@@ -23,8 +23,6 @@ export const submitComment = comment => (dispatch, getState) => {
   const currentPhotoId = getCurrentPhotoId(getState());
   const user = getCurrentUser(getState());
 
-  console.log(user);
-
   const { left, top } = getState().newComment;
 
   return axios
@@ -40,7 +38,10 @@ export const submitComment = comment => (dispatch, getState) => {
         submitCommentSuccess(id, comment, left, top, user, currentPhotoId)
       )
     )
-    .catch(() => dispatch(submitCommentError()));
+    .catch(e => {
+      console.log(e);
+      dispatch(submitCommentError());
+    });
 };
 
 export const submitCommentStart = () => ({

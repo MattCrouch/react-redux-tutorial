@@ -21,42 +21,25 @@ export const initialState = UiStateRecord();
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_NEW_COMMENT:
-      return {
-        ...state,
-        commentOpen: undefined
-      };
+      return state.set("commentOpen", undefined);
     case HIDE_COMMENT:
-      return {
-        ...state,
-        commentOpen: undefined
-      };
+      return state.set("commentOpen", undefined);
     case LOAD_GALLERY_ERROR:
-      return {
-        ...state,
+      return state.merge({
         loading: false,
         error: true
-      };
+      });
     case LOAD_GALLERY_START:
-      return {
-        ...state,
+      return state.merge({
         loading: true,
         error: false
-      };
+      });
     case LOAD_GALLERY_SUCCESS:
-      return {
-        ...state,
-        loading: false
-      };
+      return state.set("loading", false);
     case SET_CURRENT_PHOTO_ID:
-      return {
-        ...state,
-        currentPhotoId: action.payload
-      };
+      return state.set("currentPhotoId", action.payload);
     case SHOW_COMMENT:
-      return {
-        ...state,
-        commentOpen: action.payload
-      };
+      return state.set("commentOpen", action.payload);
     default:
       return state;
   }
