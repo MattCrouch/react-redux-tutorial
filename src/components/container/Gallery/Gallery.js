@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ImmutablePropTypes from "react-immutable-proptypes";
 import { connect } from "react-redux";
 import { loadGallery, setCurrentPhotoId } from "../../../actions";
 import {
@@ -33,7 +34,9 @@ export class GalleryContainer extends Component {
       return <Loading />;
     }
 
-    return <Gallery photos={photos} />;
+    const galleryPhotos = [...photos];
+
+    return <Gallery photos={galleryPhotos} />;
   }
 }
 
@@ -54,7 +57,7 @@ GalleryContainer.propTypes = {
   error: PropTypes.bool.isRequired,
   loadGallery: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  photos: PropTypes.arrayOf(
+  photos: ImmutablePropTypes.listOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       src: PropTypes.string.isRequired

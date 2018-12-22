@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import {
   addNewComment,
@@ -60,10 +60,12 @@ export class PhotoContainer extends Component {
       return null;
     }
 
+    const photoComments = [...photo.comments];
+
     return (
       <Photo
         addNewComment={this.addNewComment}
-        comments={photo.comments}
+        comments={photoComments}
         id={photo.id}
         src={photo.src}
         newComment={newComment}
