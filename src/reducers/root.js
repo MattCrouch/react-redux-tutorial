@@ -1,26 +1,15 @@
-import { combineReducers } from "redux-immutable";
-import { Record } from "immutable";
+import { combineReducers } from "redux";
 
-import newComment, {
-  initialState as newCommentInitialState
-} from "./newComment/newComment";
-import photos, { initialState as photosInitialState } from "./photos/photos";
-import ui, { initialState as uiInitialState } from "./ui/ui";
-import user, { initialState as userInitialState } from "./user/user";
+import newComment from "./newComment/newComment";
+import photos from "./photos/photos";
+import ui from "./ui/ui";
+import user from "./user/user";
 
-const rootReducer = combineReducers(
-  {
-    newComment,
-    photos,
-    ui,
-    user
-  },
-  Record({
-    newComment: newCommentInitialState,
-    photos: photosInitialState,
-    ui: uiInitialState,
-    user: userInitialState
-  })
-);
+const rootReducer = combineReducers({
+  newComment,
+  photos,
+  ui,
+  user
+});
 
 export default rootReducer;
