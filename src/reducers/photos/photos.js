@@ -3,7 +3,7 @@ import {
   LOAD_GALLERY_SUCCESS,
   SUBMIT_COMMENT_SUCCESS
 } from "../../constants/actions";
-import { CommentRecord, PhotoRecord, UserRecord } from "../../records";
+import { CommentRecord /*, PhotoRecord, UserRecord*/ } from "../../records";
 
 export const initialState = List([]);
 
@@ -12,22 +12,23 @@ export const reducer = (state = initialState, action) => {
 
   switch (action.type) {
     case LOAD_GALLERY_SUCCESS:
-      const photos = action.photos.map(photo => {
-        const comments = List(
-          photo.comments.map(comment => CommentRecord(comment))
-        );
-        const user = UserRecord(photo.user);
+      return List(action.payload.result);
+    //   const photos = action.photos.map(photo => {
+    //     const comments = List(
+    //       photo.comments.map(comment => CommentRecord(comment))
+    //     );
+    //     const user = UserRecord(photo.user);
 
-        return PhotoRecord({
-          ...photo,
-          comments,
-          user
-        });
-      });
+    //     return PhotoRecord({
+    //       ...photo,
+    //       comments,
+    //       user
+    //     });
+    //   });
 
-      newState = List(photos);
+    //   newState = List(photos);
 
-      return newState;
+    //   return newState;
     case SUBMIT_COMMENT_SUCCESS:
       const { id, comment, top, left, user, photoId } = action.payload;
 

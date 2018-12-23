@@ -1,4 +1,7 @@
 import axios from "axios";
+import { normalize } from "normalizr";
+
+import { PhotoSchema } from "../../schemas";
 
 import {
   LOAD_GALLERY_ERROR,
@@ -10,9 +13,9 @@ export const loadGalleryStart = () => ({
   type: LOAD_GALLERY_START
 });
 
-export const loadGallerySuccess = photos => ({
+export const loadGallerySuccess = payload => ({
   type: LOAD_GALLERY_SUCCESS,
-  photos
+  payload
 });
 
 export const loadGalleryError = () => ({
@@ -24,6 +27,12 @@ export const loadGallery = () => dispatch => {
 
   return axios
     .get("http://localhost:3001/photos")
-    .then(response => dispatch(loadGallerySuccess(response.data)))
-    .catch(() => dispatch(loadGalleryError()));
+    .then(response => {
+      const normalized = normalize(response.data, [PhotoSchema]);
+      dispatch(loadGallerySuccess(normalized));
+    })
+    .catch(e => {
+      console.log(e);
+      dispatch(loadGalleryError());
+    });
 };
