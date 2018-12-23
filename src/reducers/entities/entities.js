@@ -1,5 +1,10 @@
 import { fromJS, Map, Record } from "immutable";
-import { LOAD_GALLERY_SUCCESS } from "../../constants/actions";
+import { normalize } from "normalizr";
+import {
+  LOAD_GALLERY_SUCCESS,
+  SUBMIT_COMMENT_SUCCESS
+} from "../../constants/actions";
+import { CommentSchema } from "../../schemas";
 import { CommentRecord, PhotoRecord, UserRecord } from "../../records";
 
 export const EntitiesStateRecord = Record({
@@ -34,6 +39,23 @@ export const reducer = (state = initialState, action) => {
         photos: Map(newPhotos),
         users: Map(newUsers)
       });
+
+      return newState;
+    case SUBMIT_COMMENT_SUCCESS:
+      if (![...state.photos.keys()].includes(action.payload.photoId)) {
+        return state;
+      }
+
+      const normalized = normalize(action.payload, CommentSchema);
+      const normalizedComment = normalized.entities.comments[normalized.result];
+
+      const newComment = CommentRecord(normalizedComment);
+      newState = state.setIn(["comments", normalizedComment.id], newComment);
+
+      newState = newState.updateIn(
+        ["photos", action.payload.photoId, "comments"],
+        comments => comments.push(newComment.id)
+      );
 
       return newState;
     default:
