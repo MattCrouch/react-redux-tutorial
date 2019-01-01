@@ -37,6 +37,8 @@ export const reducer = (state = initialState, action) => {
         return state;
       }
 
+      const commentUser = UserRecord(user);
+
       newState = state.updateIn([key, "comments"], comments =>
         comments.push(
           CommentRecord({
@@ -44,7 +46,7 @@ export const reducer = (state = initialState, action) => {
             comment,
             left,
             top,
-            user
+            user: commentUser
           })
         )
       );
