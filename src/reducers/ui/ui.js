@@ -18,7 +18,7 @@ export const UiStateRecord = Record({
 
 export const initialState = UiStateRecord();
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case ADD_NEW_COMMENT:
       return state.set("commentOpen", undefined);
