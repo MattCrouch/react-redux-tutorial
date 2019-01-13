@@ -17,7 +17,7 @@ export const NewCommentStateRecord = Record({
 
 export const initialState = NewCommentStateRecord();
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case ADD_NEW_COMMENT:
       return state.merge({

@@ -7,7 +7,7 @@ import { CommentRecord, PhotoRecord, UserRecord } from "../../records";
 
 export const initialState = List([]);
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action = {}) => {
   let newState;
 
   switch (action.type) {
