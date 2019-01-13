@@ -8,97 +8,72 @@ import {
   SHOW_COMMENT
 } from "../../constants/actions";
 import reducer, { UiStateRecord, initialState } from "./ui";
+import { ReducerTests } from "../../testHelpers";
 
 describe("ui reducer", () => {
+  const tester = new ReducerTests(reducer);
+
   it("returns the initial state", () => {
     const state = reducer();
 
     expect(state).toEqual(initialState);
   });
 
-  it("handles ADD_NEW_COMMENT action", () => {
-    const oldState = initialState.set("commentOpen", "1");
-
-    const action = {
+  tester.action(
+    UiStateRecord({ commentOpen: "1" }),
+    {
       type: ADD_NEW_COMMENT
-    };
+    },
+    UiStateRecord({ commentOpen: undefined })
+  );
 
-    const newState = reducer(oldState, action);
-
-    expect(newState).toEqual(UiStateRecord({ commentOpen: undefined }));
-  });
-
-  it("handles HIDE_COMMENT action", () => {
-    const oldState = initialState.set("commentOpen", "1");
-
-    const action = {
+  tester.action(
+    UiStateRecord({ commentOpen: "1" }),
+    {
       type: HIDE_COMMENT
-    };
+    },
+    UiStateRecord({ commentOpen: undefined })
+  );
 
-    const newState = reducer(oldState, action);
-
-    expect(newState).toEqual(UiStateRecord({ commentOpen: undefined }));
-  });
-
-  it("handles LOAD_GALLERY_ERROR action", () => {
-    const oldState = initialState;
-
-    const action = {
+  tester.action(
+    UiStateRecord(),
+    {
       type: LOAD_GALLERY_ERROR
-    };
+    },
+    UiStateRecord({ loading: false, error: true })
+  );
 
-    const newState = reducer(oldState, action);
-
-    expect(newState).toEqual(UiStateRecord({ loading: false, error: true }));
-  });
-
-  it("handles LOAD_GALLERY_SUCCESS action", () => {
-    const oldState = initialState.set("loading", true);
-
-    const action = {
+  tester.action(
+    UiStateRecord({ loading: true }),
+    {
       type: LOAD_GALLERY_SUCCESS
-    };
+    },
+    UiStateRecord({ loading: false, error: false })
+  );
 
-    const newState = reducer(oldState, action);
-
-    expect(newState).toEqual(UiStateRecord({ loading: false, error: false }));
-  });
-
-  it("handles LOAD_GALLERY_START action", () => {
-    const oldState = initialState;
-
-    const action = {
+  tester.action(
+    UiStateRecord(),
+    {
       type: LOAD_GALLERY_START
-    };
+    },
+    UiStateRecord({ loading: true, error: false })
+  );
 
-    const newState = reducer(oldState, action);
-
-    expect(newState).toEqual(UiStateRecord({ loading: true, error: false }));
-  });
-
-  it("handles SET_CURRENT_PHOTO_ID action", () => {
-    const oldState = initialState;
-
-    const action = {
+  tester.action(
+    UiStateRecord(),
+    {
       type: SET_CURRENT_PHOTO_ID,
       payload: "1"
-    };
+    },
+    UiStateRecord({ currentPhotoId: "1" })
+  );
 
-    const newState = reducer(oldState, action);
-
-    expect(newState).toEqual(UiStateRecord({ currentPhotoId: "1" }));
-  });
-
-  it("handles SHOW_COMMENT action", () => {
-    const oldState = initialState;
-
-    const action = {
+  tester.action(
+    UiStateRecord(),
+    {
       type: SHOW_COMMENT,
       payload: "1"
-    };
-
-    const newState = reducer(oldState, action);
-
-    expect(newState).toEqual(UiStateRecord({ commentOpen: "1" }));
-  });
+    },
+    UiStateRecord({ commentOpen: "1" })
+  );
 });
