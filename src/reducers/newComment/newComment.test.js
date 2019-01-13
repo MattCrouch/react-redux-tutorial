@@ -12,11 +12,7 @@ import { ReducerTests } from "../../testHelpers";
 describe("new comment reducer", () => {
   const tester = new ReducerTests(reducer);
 
-  it("returns the initial state", () => {
-    const state = reducer();
-
-    expect(state).toEqual(initialState);
-  });
+  tester.initialState(initialState);
 
   tester.action(
     NewCommentStateRecord(),

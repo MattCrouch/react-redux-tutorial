@@ -7,7 +7,7 @@ export const UserStateRecord = Record({
 
 export const initialState = UserStateRecord();
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action = {}) => {
   return state;
 };
 

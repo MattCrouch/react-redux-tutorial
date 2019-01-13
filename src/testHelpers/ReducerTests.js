@@ -10,6 +10,14 @@ export class ReducerTests {
       expect(state).toEqual(newState);
     });
   }
+
+  initialState(initialState) {
+    it("returns the initial state", () => {
+      const state = this.reducer();
+
+      expect(state).toEqual(initialState);
+    });
+  }
 }
 
 export default ReducerTests;
