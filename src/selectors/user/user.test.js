@@ -2,16 +2,18 @@ import { initialState } from "../../reducers/user/user";
 import { getCurrentUser } from "./user";
 
 describe("user selectors", () => {
-  const state = {
-    user: initialState
-  };
+  describe("getCurrentUser", () => {
+    it("retrieves the current user", () => {
+      const state = {
+        user: initialState
+      };
 
-  it("retrieves the current user", () => {
-    const { id, name } = initialState;
+      const { id, name } = state.user;
 
-    expect(getCurrentUser(state)).toEqual({
-      id,
-      name
+      expect(getCurrentUser(state)).toEqual({
+        id,
+        name
+      });
     });
   });
 });
