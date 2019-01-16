@@ -71,17 +71,6 @@ describe("new comment reducer", () => {
   it("handles the SUBMIT_COMMENT_SUCCESS action when the photo cannot be found", () => {
     const newCommentData = createComment();
 
-    const newCommentUser = UserRecord(newCommentData.user);
-
-    const photoWithNewComment = photo.updateIn(["comments"], comments =>
-      comments.push(
-        CommentRecord({
-          ...newCommentData,
-          user: newCommentUser
-        })
-      )
-    );
-
     const action = {
       type: SUBMIT_COMMENT_SUCCESS,
       payload: {
