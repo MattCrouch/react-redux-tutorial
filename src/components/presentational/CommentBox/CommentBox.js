@@ -32,6 +32,10 @@ const CommentBox = ({ children, left, open, top }) => {
 };
 
 CommentBox.propTypes = {
+  children: PropTypes.node,
+  left: PropTypes.number.isRequired,
+  open: PropTypes.bool.isRequired,
+  top: PropTypes.number.isRequired,
   onClick: PropTypes.func
 };
 
