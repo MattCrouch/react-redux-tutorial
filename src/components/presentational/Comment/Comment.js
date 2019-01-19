@@ -24,7 +24,7 @@ const Comment = ({
         <button className="comment__close" onClick={hideComment}>
           <img alt="Close" src={CloseIcon} />
         </button>
-        <div>{comment}</div>
+        <div className="comment__comment">{comment}</div>
         <div className="comment__user">{user.name}</div>
       </CommentBox>
     </div>
