@@ -37,6 +37,7 @@ NewCommentContainer.propTypes = {
   error: PropTypes.bool.isRequired,
   left: PropTypes.number.isRequired,
   top: PropTypes.number.isRequired,
+  submitComment: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired
 };
 
