@@ -8,8 +8,8 @@ import {
 describe("new comment selectors", () => {
   describe("getNewComment", () => {
     it("gets the details about the new comment", () => {
-      const left = "12";
-      const top = "34";
+      const left = 12;
+      const top = 34;
 
       const stateWithNewComment = {
         newComment: initialState.merge({

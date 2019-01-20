@@ -39,8 +39,8 @@ describe("newComment actions", () => {
   it("creates a `SUBMIT_COMMENT_SUCCESS` action", () => {
     const id = "1";
     const comment = "This is a comment";
-    const left = "12";
-    const top = "34";
+    const left = 12;
+    const top = 34;
     const user = "2";
     const photoId = "3";
 
@@ -67,8 +67,8 @@ describe("newComment actions", () => {
 
   describe("submitComment", () => {
     const comment = "This is a comment";
-    const left = "12";
-    const top = "34";
+    const left = 12;
+    const top = 34;
     const currentPhotoId = "1";
     const user = {
       id: "2",
