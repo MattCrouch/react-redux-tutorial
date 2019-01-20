@@ -6,7 +6,7 @@ import {
   SUBMIT_COMMENT_START,
   SUBMIT_COMMENT_SUCCESS
 } from "../../constants/actions";
-import reducer, { NewCommentStateRecord, initialState } from "./newComment";
+import reducer, { initialState } from "./newComment";
 import { ReducerTests } from "../../testHelpers";
 
 describe("new comment reducer", () => {
@@ -15,7 +15,7 @@ describe("new comment reducer", () => {
   tester.initialState(initialState);
 
   tester.action(
-    NewCommentStateRecord(),
+    initialState,
     {
       type: ADD_NEW_COMMENT,
       payload: {
@@ -23,43 +23,43 @@ describe("new comment reducer", () => {
         top: 20
       }
     },
-    NewCommentStateRecord({ left: 10, top: 20 })
+    initialState.merge({ left: 10, top: 20 })
   );
 
   tester.action(
-    NewCommentStateRecord({ left: 10, top: 20 }),
+    initialState.merge({ left: 10, top: 20 }),
     {
       type: SET_CURRENT_PHOTO_ID
     },
-    NewCommentStateRecord({ left: undefined, top: undefined })
+    initialState.merge({ left: undefined, top: undefined })
   );
 
   tester.action(
-    NewCommentStateRecord({ left: 10, top: 20 }),
+    initialState.merge({ left: 10, top: 20 }),
     {
       type: SHOW_COMMENT
     },
-    NewCommentStateRecord()
+    initialState
   );
 
   tester.action(
-    NewCommentStateRecord({ submitting: true }),
+    initialState.merge({ submitting: true }),
     {
       type: SUBMIT_COMMENT_ERROR
     },
-    NewCommentStateRecord({ error: true, submitting: false })
+    initialState.merge({ error: true, submitting: false })
   );
 
   tester.action(
-    NewCommentStateRecord(),
+    initialState,
     {
       type: SUBMIT_COMMENT_START
     },
-    NewCommentStateRecord({ error: false, submitting: true })
+    initialState.merge({ error: false, submitting: true })
   );
 
   tester.action(
-    NewCommentStateRecord({
+    initialState.merge({
       left: 10,
       submitting: true,
       top: 20
@@ -67,6 +67,6 @@ describe("new comment reducer", () => {
     {
       type: SUBMIT_COMMENT_SUCCESS
     },
-    NewCommentStateRecord()
+    initialState
   );
 });

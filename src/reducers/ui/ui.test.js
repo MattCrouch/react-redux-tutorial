@@ -7,7 +7,7 @@ import {
   SET_CURRENT_PHOTO_ID,
   SHOW_COMMENT
 } from "../../constants/actions";
-import reducer, { UiStateRecord, initialState } from "./ui";
+import reducer, { initialState } from "./ui";
 import { ReducerTests } from "../../testHelpers";
 
 describe("ui reducer", () => {
@@ -16,60 +16,60 @@ describe("ui reducer", () => {
   tester.initialState(initialState);
 
   tester.action(
-    UiStateRecord({ commentOpen: "1" }),
+    initialState.merge({ commentOpen: "1" }),
     {
       type: ADD_NEW_COMMENT
     },
-    UiStateRecord({ commentOpen: undefined })
+    initialState.merge({ commentOpen: undefined })
   );
 
   tester.action(
-    UiStateRecord({ commentOpen: "1" }),
+    initialState.merge({ commentOpen: "1" }),
     {
       type: HIDE_COMMENT
     },
-    UiStateRecord({ commentOpen: undefined })
+    initialState.merge({ commentOpen: undefined })
   );
 
   tester.action(
-    UiStateRecord(),
+    initialState,
     {
       type: LOAD_GALLERY_ERROR
     },
-    UiStateRecord({ loading: false, error: true })
+    initialState.merge({ loading: false, error: true })
   );
 
   tester.action(
-    UiStateRecord({ loading: true }),
+    initialState.merge({ loading: true }),
     {
       type: LOAD_GALLERY_SUCCESS
     },
-    UiStateRecord({ loading: false, error: false })
+    initialState.merge({ loading: false, error: false })
   );
 
   tester.action(
-    UiStateRecord(),
+    initialState,
     {
       type: LOAD_GALLERY_START
     },
-    UiStateRecord({ loading: true, error: false })
+    initialState.merge({ loading: true, error: false })
   );
 
   tester.action(
-    UiStateRecord(),
+    initialState,
     {
       type: SET_CURRENT_PHOTO_ID,
       payload: "1"
     },
-    UiStateRecord({ currentPhotoId: "1" })
+    initialState.merge({ currentPhotoId: "1" })
   );
 
   tester.action(
-    UiStateRecord(),
+    initialState,
     {
       type: SHOW_COMMENT,
       payload: "1"
     },
-    UiStateRecord({ commentOpen: "1" })
+    initialState.merge({ commentOpen: "1" })
   );
 });
