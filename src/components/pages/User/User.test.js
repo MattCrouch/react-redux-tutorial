@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import UserForm from "../../form/User";
+import UserForm from "../../forms/User";
 import User from "./";
 
 describe("<User />", () => {

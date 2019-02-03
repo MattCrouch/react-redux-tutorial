@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import Container from "../../presentational/Container";
-import User from "../../form/User";
+import User from "../../forms/User";
 
 import "./styles.css";
 
