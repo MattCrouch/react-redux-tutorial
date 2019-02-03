@@ -6,11 +6,21 @@ import UserForm from "../../forms/User";
 import "./styles.css";
 
 class User extends Component {
+  constructor() {
+    super();
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(values) {
+    console.log(values);
+  }
+
   render() {
     return (
       <main className="user">
         <Container>
-          <UserForm />
+          <UserForm onSubmit={this.handleSubmit} />
         </Container>
       </main>
     );

@@ -3,9 +3,13 @@ import { Field, reduxForm } from "redux-form";
 
 import "./styles.css";
 
-export const User = ({ onSubmit }) => (
-  <form onSubmit={onSubmit}>
-    <Field name="name" component="input" type="text" />
+export const User = ({ handleSubmit }) => (
+  <form onSubmit={handleSubmit}>
+    <label>
+      Username
+      <Field name="name" component="input" type="text" />
+    </label>
+    <button type="submit">Submit</button>
   </form>
 );
 
