@@ -5,7 +5,7 @@ import User from "../../forms/User";
 
 import "./styles.css";
 
-class Home extends Component {
+class User extends Component {
   render() {
     return (
       <main className="user">
@@ -17,4 +17,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default User;
