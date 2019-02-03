@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
+import { submitUser } from "../../../actions";
 import Form from "../../forms/User";
 
 import "./styles.css";
@@ -14,7 +17,7 @@ class UserForm extends Component {
   handleSubmit(values) {
     console.log(values);
 
-    return Promise.reject();
+    return this.props.submitUser(values);
   }
 
   render() {
@@ -22,4 +25,17 @@ class UserForm extends Component {
   }
 }
 
-export default UserForm;
+export const mapStateToProps = state => ({});
+
+export const mapDispatchToProps = dispatch => ({
+  submitUser: values => dispatch(submitUser(values))
+});
+
+UserForm.propTypes = {
+  submitUser: PropTypes.func.isRequired
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserForm);
