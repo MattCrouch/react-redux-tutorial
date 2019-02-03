@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import Container from "../../presentational/Container";
-import User from "../../forms/User";
+import UserForm from "../../forms/User";
 
 import "./styles.css";
 
@@ -10,7 +10,7 @@ class User extends Component {
     return (
       <main className="user">
         <Container>
-          <User />
+          <UserForm />
         </Container>
       </main>
     );
