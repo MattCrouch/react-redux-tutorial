@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import UserForm from "../../forms/User";
+import UserForm from "../../container/UserForm";
 import User from "./";
 
 describe("<User />", () => {
@@ -10,7 +10,7 @@ describe("<User />", () => {
     wrapper = shallow(<User />);
   });
 
-  it("renders a User form", () => {
+  it("renders a UserForm container", () => {
     expect(wrapper.find(UserForm).exists()).toBe(true);
   });
 });

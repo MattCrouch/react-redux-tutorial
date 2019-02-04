@@ -1,16 +1,42 @@
 import React from "react";
 import { shallow } from "enzyme";
-import UserForm from "../../forms/User";
-import User from ".";
+import { createMockStore, dispatchMap, stateMap } from "../../../testHelpers";
+import rootReducer from "../../../reducers";
+import Form from "../../forms/User";
+import { mapDispatchToProps, mapStateToProps, UserForm } from "./UserForm";
 
-describe("<User />", () => {
+describe("<UserForm />", () => {
   let wrapper;
+  const props = {
+    submitUser: jest.fn()
+  };
 
   beforeEach(() => {
-    wrapper = shallow(<User />);
+    wrapper = shallow(<UserForm {...props} />);
   });
 
   it("renders a User form", () => {
-    expect(wrapper.find(UserForm).exists()).toBe(true);
+    expect(wrapper.find(Form).exists()).toBe(true);
   });
+
+  describe("handleSubmit", () => {
+    it("calls the `submitUser` prop function with the correct values", () => {
+      expect(props.submitUser).not.toBeCalled();
+
+      const values = {
+        name: "Matt"
+      };
+
+      const handleSubmit = wrapper.instance().handleSubmit;
+
+      handleSubmit(values);
+
+      expect(props.submitUser).toBeCalledWith(values);
+    });
+  });
+
+  const store = createMockStore(rootReducer());
+
+  stateMap(mapStateToProps, store.getState(), props);
+  dispatchMap(mapDispatchToProps, props);
 });

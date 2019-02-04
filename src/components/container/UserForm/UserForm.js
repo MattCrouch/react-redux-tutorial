@@ -7,7 +7,7 @@ import Form from "../../forms/User";
 
 import "./styles.css";
 
-class UserForm extends Component {
+export class UserForm extends Component {
   constructor() {
     super();
 
@@ -15,8 +15,6 @@ class UserForm extends Component {
   }
 
   handleSubmit(values) {
-    console.log(values);
-
     return this.props.submitUser(values);
   }
 
