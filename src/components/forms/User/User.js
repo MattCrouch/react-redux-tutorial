@@ -3,6 +3,15 @@ import { Field, reduxForm } from "redux-form";
 
 import "./styles.css";
 
+const validate = values => {
+  const errors = {};
+
+  if (!values.name) {
+    errors.name = "Required";
+  }
+  return errors;
+};
+
 export const User = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <label>
@@ -14,5 +23,6 @@ export const User = ({ handleSubmit }) => (
 );
 
 export default reduxForm({
-  form: "user"
+  form: "user",
+  validate
 })(User);
