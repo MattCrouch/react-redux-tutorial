@@ -5,7 +5,7 @@ import TextInput from "../../presentational/TextInput/TextInput";
 
 import "./styles.css";
 
-const validate = values => {
+export const validate = values => {
   const errors = {};
 
   if (!values.name) {

@@ -9,7 +9,6 @@ export const TextInput = ({
   input: { onChange, value }
 }) => {
   const showError = invalid && touched;
-  // const showError = true;
 
   return (
     <div className={`text-input ${showError && "text-input--error"}`}>
