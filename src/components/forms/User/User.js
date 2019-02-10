@@ -1,5 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import Button from "../../presentational/Button/Button";
+import TextInput from "../../presentational/TextInput/TextInput";
 
 import "./styles.css";
 
@@ -14,15 +16,13 @@ const validate = values => {
 
 export const User = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
-    <label>
-      Username
-      <Field name="name" component="input" type="text" />
-    </label>
-    <button type="submit">Submit</button>
+    <Field label="Username" name="name" component={TextInput} type="text" />
+    <Button>Submit</Button>
   </form>
 );
 
 export default reduxForm({
   form: "user",
+  touchOnChange: true,
   validate
 })(User);
