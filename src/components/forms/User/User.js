@@ -14,10 +14,11 @@ const validate = values => {
   return errors;
 };
 
-export const User = ({ handleSubmit }) => (
+export const User = ({ error, handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <Field label="Username" name="name" component={TextInput} type="text" />
     <Button>Submit</Button>
+    {error && <div className="user-form__error">{error}</div>}
   </form>
 );
 

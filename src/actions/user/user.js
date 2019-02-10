@@ -1,4 +1,5 @@
 import axios from "axios";
+import { SubmissionError } from "redux-form";
 
 import {
   SUBMIT_USER_ERROR,
@@ -16,9 +17,9 @@ export const submitUser = values => (dispatch, getState) => {
   return axios
     .patch(`http://localhost:3001/users/${user.id}`, values)
     .then(({ data: { name } }) => dispatch(submitUserSuccess(name)))
-    .catch(error => {
+    .catch(() => {
       dispatch(submitUserError());
-      throw error;
+      throw new SubmissionError({ _error: "Could not save details" });
     });
 };
 
