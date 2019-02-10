@@ -6,3 +6,7 @@ export const getCurrentUser = state => {
     name
   };
 };
+
+export const getInitialValuesForUserForm = state => ({
+  name: state.user.name
+});

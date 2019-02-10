@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { submitUser } from "../../../actions";
+import { getInitialValuesForUserForm } from "../../../selectors";
 import Form from "../../forms/User";
 
 import "./styles.css";
@@ -19,11 +20,18 @@ export class UserForm extends Component {
   }
 
   render() {
-    return <Form onSubmit={this.handleSubmit} />;
+    return (
+      <Form
+        initialValues={this.props.initialValues}
+        onSubmit={this.handleSubmit}
+      />
+    );
   }
 }
 
-export const mapStateToProps = state => ({});
+export const mapStateToProps = state => ({
+  initialValues: getInitialValuesForUserForm(state)
+});
 
 export const mapDispatchToProps = dispatch => ({
   submitUser: values => dispatch(submitUser(values))

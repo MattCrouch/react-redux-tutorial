@@ -1,5 +1,5 @@
 import { initialState } from "../../reducers/user/user";
-import { getCurrentUser } from "./user";
+import { getCurrentUser, getInitialValuesForUserForm } from "./user";
 
 describe("user selectors", () => {
   describe("getCurrentUser", () => {
@@ -12,6 +12,20 @@ describe("user selectors", () => {
 
       expect(getCurrentUser(state)).toEqual({
         id,
+        name
+      });
+    });
+  });
+
+  describe("getInitialValuesForUserForm", () => {
+    it("retrieves data in the format the User form expects", () => {
+      const state = {
+        user: initialState
+      };
+
+      const { name } = state.user;
+
+      expect(getInitialValuesForUserForm(state)).toEqual({
         name
       });
     });
