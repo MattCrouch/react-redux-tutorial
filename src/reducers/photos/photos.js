@@ -1,7 +1,8 @@
 import { List } from "immutable";
 import {
   LOAD_GALLERY_SUCCESS,
-  SUBMIT_COMMENT_SUCCESS
+  SUBMIT_COMMENT_SUCCESS,
+  SUBMIT_USER_SUCCESS
 } from "../../constants/actions";
 import { CommentRecord, PhotoRecord, UserRecord } from "../../records";
 
@@ -51,6 +52,32 @@ export const reducer = (state = initialState, action = {}) => {
         )
       );
 
+      return newState;
+    case SUBMIT_USER_SUCCESS:
+      // Photo owners
+      newState = state.map(photo => {
+        if (photo.user.id !== action.payload.id) {
+          return photo;
+        }
+
+        return photo.updateIn(["user", "name"], () => action.payload.name);
+      });
+
+      // Commenters
+      newState = newState.map(photo =>
+        photo.update("comments", comments => {
+          return comments.map(comment => {
+            if (comment.user.id !== action.payload.id) {
+              return comment;
+            }
+
+            return comment.updateIn(
+              ["user", "name"],
+              () => action.payload.name
+            );
+          });
+        })
+      );
       return newState;
     default:
       return state;

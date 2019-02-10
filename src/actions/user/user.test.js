@@ -50,13 +50,14 @@ describe("user actions", () => {
   });
 
   it("creates a `SUBMIT_USER_SUCCESS` action", () => {
-    const name = "Matt";
+    const payload = {
+      id: "1",
+      name: "Matt"
+    };
 
-    expect(submitUserSuccess(name)).toEqual({
+    expect(submitUserSuccess(payload)).toEqual({
       type: SUBMIT_USER_SUCCESS,
-      payload: {
-        name
-      }
+      payload
     });
   });
 
@@ -123,7 +124,7 @@ describe("user actions", () => {
       id: "2",
       name: "Matt"
     };
-    const values = { name: "Changed Name" };
+    const values = { id: "2", name: "Changed Name" };
 
     let mockStore;
 
@@ -155,7 +156,7 @@ describe("user actions", () => {
 
       const actions = mockStore.getActions();
       expect(actions[0]).toEqual(submitUserStart());
-      expect(actions[1]).toEqual(submitUserSuccess(values.name));
+      expect(actions[1]).toEqual(submitUserSuccess(values));
     });
 
     it("handles a failed update to the user", async () => {

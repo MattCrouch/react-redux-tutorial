@@ -43,7 +43,7 @@ export const submitUser = values => (dispatch, getState) => {
 
   return axios
     .patch(`http://localhost:3001/users/${user.id}`, values)
-    .then(({ data: { name } }) => dispatch(submitUserSuccess(name)))
+    .then(({ data }) => dispatch(submitUserSuccess(data)))
     .catch(() => {
       dispatch(submitUserError());
       throw new SubmissionError({ _error: "Could not save details" });
@@ -58,9 +58,7 @@ export const submitUserStart = () => ({
   type: SUBMIT_USER_START
 });
 
-export const submitUserSuccess = name => ({
+export const submitUserSuccess = data => ({
   type: SUBMIT_USER_SUCCESS,
-  payload: {
-    name
-  }
+  payload: data
 });

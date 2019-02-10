@@ -1,7 +1,8 @@
 import { List } from "immutable";
 import {
   LOAD_GALLERY_SUCCESS,
-  SUBMIT_COMMENT_SUCCESS
+  SUBMIT_COMMENT_SUCCESS,
+  SUBMIT_USER_SUCCESS
 } from "../../constants/actions";
 import reducer, { initialState } from "./photos";
 import { createPhoto, ReducerTests, createComment } from "../../testHelpers";
@@ -77,6 +78,44 @@ describe("new comment reducer", () => {
         ...newCommentData,
         photoId: "xxx"
       }
+    };
+
+    const newState = reducer(List([photo]), action);
+
+    expect(newState).toEqual(List([photo]));
+  });
+
+  it("handles the SUBMIT_USER_SUCCESS action", () => {
+    const newUser = {
+      id: "2",
+      name: "Matt"
+    };
+
+    let updatedPhoto = photo.setIn(["user", "name"], newUser.name);
+    updatedPhoto = updatedPhoto.setIn(
+      ["comments", 0, "user", "name"],
+      newUser.name
+    );
+
+    const action = {
+      type: SUBMIT_USER_SUCCESS,
+      payload: newUser
+    };
+
+    const newState = reducer(List([photo]), action);
+
+    expect(newState).toEqual(List([updatedPhoto]));
+  });
+
+  it("handles the SUBMIT_USER_SUCCESS action when no comments or photos are by that user", () => {
+    const newUser = {
+      id: "3",
+      name: "NewUser"
+    };
+
+    const action = {
+      type: SUBMIT_USER_SUCCESS,
+      payload: newUser
     };
 
     const newState = reducer(List([photo]), action);
