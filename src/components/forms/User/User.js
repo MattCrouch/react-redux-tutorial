@@ -23,6 +23,7 @@ export const User = ({ error, handleSubmit }) => (
 );
 
 export default reduxForm({
+  enableReinitialize: true,
   form: "user",
   touchOnChange: true,
   validate

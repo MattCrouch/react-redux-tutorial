@@ -38,6 +38,9 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 UserForm.propTypes = {
+  initialValues: PropTypes.shape({
+    name: PropTypes.string
+  }),
   submitUser: PropTypes.func.isRequired
 };
 
