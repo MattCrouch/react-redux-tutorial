@@ -13,8 +13,8 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Header />
         <User />
+        <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/photo/:id" component={PhotoPage} />
